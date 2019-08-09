@@ -1,0 +1,59 @@
+<div class="container">
+        <!-- Content here -->
+        <br>
+        <h3 style="color:rgb(127, 209, 230); font-family: Verdana, Geneva, Tahoma, sans-serif">Add new Account:</h3>
+        <hr>
+    
+        <div style=" border-radius: 20px;  padding: 20px; width: 1100px;  box-shadow:5px 5px 5px 5px rgb(127, 205, 226);">
+            <form #empForm = ngForm>
+
+                <div class="form-group">
+                        <label for="id">Account Id:</label>
+                        <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name = "id" [(ngModel)] = "model.id" #idControl="ngModel" required >
+                        <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="idControl.touched && idControl.invalid">Id can't be empty</small>
+                    </div>
+
+                <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" name = "phone" placeholder="Enter Phone" [(ngModel)] = "model.phone" #phoneControl="ngModel" required >
+                        <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="phoneControl.touched && phoneControl.invalid">Phone is required</small>
+                    </div>
+
+                <div class="form-group">
+                        <label for="accountHolder">Name:</label>
+                        <input type="text" class="form-control" id="name" name = "accountHolder" placeholder="Enter Name" [(ngModel)] = "model.accountHolder" #nameControl="ngModel" required >
+                        <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="nameControl.touched && nameControl.invalid">Name is required</small>
+                    </div>
+
+                <div class="form-group">
+                        <label for="balance">Balance:</label>
+                        <input type="number" class="form-control" id="balance" name = "balance" [(ngModel)] = "model.balance" #balanceControl="ngModel" required >
+                        <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="balanceControl.touched && balanceControl.invalid">Balance is required</small>
+                    </div>
+
+            
+                
+                <button type="submit" class="btn btn-dark" [disabled] = "empForm.invalid" (click) = "onSubmit()">Add Account</button>
+
+            </form>
+        
+            <div *ngIf="added" class="alert alert-success" role="alert">
+                Account added successfully!
+                <br>
+                <button class="btn btn-success" (click) = "refresh()"> OK </button>
+              </div>
+
+            <div *ngIf="isError" class = "alert alert-danger" role="alert">
+                Oops! account with that id already exists
+                <br>
+                <button class="btn btn-success" (click) = "refresh()"> OK </button>
+            </div>
+              
+        </div>
+
+       
+
+        
+</div>
+
+{{err.status}}

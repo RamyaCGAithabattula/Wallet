@@ -1,0 +1,163 @@
+<!--Show all accounts component-->
+
+<div class="container">
+    <hr>
+ 
+    <h3 style="color:rgb(9, 42, 102); font-family: Verdana, Geneva, Tahoma, sans-serif">List of Accounts:</h3>
+
+    <hr>
+    <div style=" border-radius: 20px;      padding: 20px;    width: 1100px;     box-shadow:5px 5px 5px 5px rgb(10, 23, 48);">
+
+        <table class="table table-hover" align="center">
+            <thead class="thead-dark" align="center" >
+                <tr align="center">    
+                    <th>Account Id</th>
+                    <th>Account Holder Name</th>
+                    <th>Contact Number</th>
+                    <th>Balance</th>
+                    <th colspan="2">Choose an action</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr *ngFor = "let account of accounts, let i = index" align="center">
+                    <td>{{account.id}}</td>
+                    <td>{{account.accountHolder | titlecase}}</td>
+                    <td>{{account.phone}}</td>
+                    <td>{{account.balance | currency:'INR'}}</td>
+                    <td><button class="btn btn-primary" value="UPDATE" (click)="updateAccount(i)">Update</button></td>
+                    <td><button class="btn btn-danger" value="DELETE" (click)="deleteAccount(i)">Delete</button></td>
+                   
+                </tr>  
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <hr>
+
+    <!--Update functionality-->
+
+    <div *ngIf="showUpdate">
+        
+        <hr>
+        <h3 style="color:rgb(9, 42, 102); font-family: Verdana, Geneva, Tahoma, sans-serif">Update Account:</h3>
+        <table class="table ">
+            <tbody >
+                <!-- <tr>
+                    <td>Account id</td>
+                    <td><input type="text" [(ngModel)] = "id" /></td>  
+                </tr> -->
+
+                <!--Add functionality so that user can't leave these fields empty-->
+
+                <tr>
+                    <td>Account Holder Name</td>
+                    <td><input type="text" name="name" [(ngModel)] = "name" required/></td>    
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td><input type="text" name="phone" [(ngModel)] = "phone" required/></td>
+                </tr>
+                <tr>
+                    <td>Balance</td>
+                    <td><input type="text" name="balance" [(ngModel)] = "balance" required/></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-dark" value="ADD" (click) = "update()">Update Account</button></td>   
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <div *ngIf="hasUpdated" class="alert alert-success" role="alert">
+                Account updated successfully!
+                <br>
+                <button class="btn btn-success" (click) = "refresh()"> OK </button>
+          </div>
+
+    </div>
+
+    <hr>
+
+<!-- 
+    <div style=" padding: 20px;  border: lavender; border-radius: 10px;  width: 1100px;  background-color:lavender ">
+
+        <footer class="page-footer font-small blue pt-4">
+
+                <div class="container-fluid text-center text-md-left">
+            
+                <div class="row">
+            
+                    <div class="col-md-6 mt-md-0 mt-3">
+            
+                    <h5 class="text-uppercase">a private account service</h5>
+                    <p>What you've seen is just strating. It can go way beyond this</p>
+            
+                    </div>
+            
+                    <hr class="clearfix w-100 d-md-none pb-3">
+            
+                    <div class="col-md-3 mb-md-0 mb-3">
+            
+                    <h5 class="text-uppercase">Main1:</h5>
+            
+                    <ul class="list-unstyled">
+                        <li>
+                        <a href="#!">Point1</a>
+                        </li>
+                        <li>
+                        <a href="#!">Point2</a>
+                        </li>
+                        <li>
+                        <a href="#!">Point3</a>
+                        </li>
+                        <li>
+                        <a href="#!">Point4</a>
+                        </li>
+                    </ul>
+            
+                    </div>
+            
+                    <div class="col-md-3 mb-md-0 mb-3">
+            
+                        <h5 class="text-uppercase">Main2</h5>
+                
+                        <ul class="list-unstyled">
+                            <li>
+                            <a href="#!">Point1</a>
+                            </li>
+                            <li>
+                            <a href="#!">Point2</a>
+                            </li>
+                            <li>
+                            <a href="#!">Point3</a>
+                            </li>
+                            <li>
+                            <a href="#!">Point4</a>
+                            </li>
+                        </ul>
+            
+                    </div>
+            
+                </div>
+            
+                </div>
+            
+                <div 
+                    class="footer-copyright text-center py-3">© 2019 Copyright: Vinay Jadon
+                </div>
+            
+        </footer>
+    </div> -->
+
+
+
+</div>     
+
+
+
+
+
+
+

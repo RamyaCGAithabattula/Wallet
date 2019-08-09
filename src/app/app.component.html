@@ -1,0 +1,73 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Welcome to Accounts!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="add">Add Account</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Account Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="deposit">Deposit</a>
+            <a class="dropdown-item" href="withdraw">Withdraw</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="transfer">Transfer Fund</a>
+          </div>
+        </li>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search account by id" aria-label="Search" name = "search" [(ngModel)]=searchId>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" (click)="search()">Search</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container">
+    
+    <div *ngIf="isError" class = "alert alert-danger" role="alert">
+
+      <br>
+      <button class="btn btn-secondary" (click) = "refresh()"> OK </button>
+    </div>
+
+    <div *ngIf="showResult">
+      
+      <br>
+
+      <h3 style="color:rgb(242, 248, 248); font-family: Verdana, Geneva, Tahoma, sans-serif">Details of searched Account:</h3>
+
+      <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>    
+                
+                <th>Account Holder Name</th>
+                <th>Contact Number</th>
+                <th>Balance</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr>
+              
+                <td>{{account.accountHolder | titlecase}}</td>
+                <td>{{account.phone}}</td>
+                <td>{{account.balance | currency:'INR'}}</td>
+              
+            </tr>  
+        </tbody>
+    </table>
+
+    </div>
+  </div>
+
+
+<router-outlet></router-outlet>
+

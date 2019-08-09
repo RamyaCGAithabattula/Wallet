@@ -1,0 +1,53 @@
+<div class="container">
+    <br>
+        <h3 style="color:rgb(9, 42, 102); font-family: Verdana, Geneva, Tahoma, sans-serif">Please enter the details below:</h3>
+    <hr>
+
+    <div style=" border-radius: 20px;      padding: 20px;    width: 1100px;     box-shadow:5px 5px 5px 5px rgb(9, 42, 102);">
+
+        <form #empForm = ngForm>
+
+            <div class="form-group">
+                    <label for="id">Account Id of account from which fund to be withdrawn:</label>
+                    <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name = "id1" [(ngModel)] = "model.id1" #idControl="ngModel" required >
+                    <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="idControl.touched && idControl.invalid">Id1 can't be empty</small>
+                </div>
+
+            <div class="form-group">
+                    <label for="id">Account Id of account in which fund to be deposited:</label>
+                    <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name = "id2" [(ngModel)] = "model.id2" #idControl="ngModel" required >
+                    <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="idControl.touched && idControl.invalid">Id2 can't be empty</small>
+                </div>
+
+            <div class="form-group">
+                    <label for="phone">Amount to be transferred:</label>
+                    <input type="text" class="form-control" id="phone" name = "amount" [(ngModel)] = "model.amount" #phoneControl="ngModel" required >
+                    <small class="alert alert-danger" role="alert" id="idHelp" *ngIf ="phoneControl.touched && phoneControl.invalid">Amount is required</small>
+                </div>
+
+            <button type="submit" class="btn btn-dark" [disabled] = "empForm.invalid" (click) = "transfer()">Submit</button>
+
+        </form>
+
+        <div *ngIf="transferred" class="alert alert-success" role="alert">
+            Amount transferred successfully!
+            <br>
+            <button class="btn btn-success" (click) = "refresh()"> OK </button>
+        </div>
+        
+        <div *ngIf="isError" class = "alert alert-danger" role="alert">
+            Oops! Either that id does not exist or there is not enough balance for transaction
+            <br>
+                <button class="btn btn-secondary" (click) = "refresh()"> Try Again </button>
+        </div>
+
+        <div *ngIf="isNegative" class = "alert alert-danger" role="alert">
+            Amount is negative..transaction can't be processed
+            <br>
+                <button class="btn btn-secondary" (click) = "refresh()"> Try Again </button>
+        </div>
+
+    </div>
+    
+ 
+</div>
